@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function code_submission()
+    {
+        $this->hasMany(Code_submissin::class);
+    }
+    public function chat()
+    {
+        $this->hasMany(Chat::class);
+    }
 }
