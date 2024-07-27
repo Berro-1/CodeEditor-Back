@@ -4,7 +4,7 @@ use App\Http\Controllers\CodesubmissionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::prefix('chat')->group(function () {
+    Route::post("/createChat", [\App\Http\Controllers\ChatController::class, "createChat"]);
+    Route::get("/", [App\Http\Controllers\ChatController::class, "getAllChats"]);
+});
+
+Route::prefix('message')->group(function () {
+    Route::post("/createMessage/{chat_id}", [\App\Http\Controllers\MessageController::class, "createMessage"]);
+    Route::get("/get/{chat_id}", [App\Http\Controllers\MessageController::class, "get"]);
+});
+
 
 
 Route::group([

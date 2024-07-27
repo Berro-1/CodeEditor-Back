@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chat extends Model
 {
+    protected $fillable = ['user1', 'user2'];
+
     use HasFactory;
     public function message()
     {
@@ -17,5 +19,4 @@ class Chat extends Model
     {
         $this->hasMany(User::class);
     }
-   
 }
