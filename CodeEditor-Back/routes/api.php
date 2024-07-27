@@ -4,7 +4,7 @@ use App\Http\Controllers\CodesubmissionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,35 +26,20 @@ Route::prefix('message')->group(function () {
 });
 
 
-
-Route::group([
-    // "middleware" => "authenticate",
-    "prefix" => "users",
-    "controller" => UserController::class
-], function () {
-    Route::get('/', [UserController::class, 'readAllUsers']);    
-    Route::get('/{id}',  'readUser');
-    Route::post('/', 'createUser');
-    Route::delete('/{id}',  'deleteUser');
-    Route::put('/{id}',  'updateUser');
-    // Route::get('/menus/{id}', 'restaurantMenus');
+Route::prefix('user')->group(function () {
+    Route::post("/createUser", [\App\Http\Controllers\UserController::class, "createUser"]);
+    Route::get("/{id}", [App\Http\Controllers\UserController::class, "readUser"]);
+    Route::get("/", [App\Http\Controllers\UserController::class, "readAllUsers"]);
+    
 });
 
-
-
-Route::group([
-    // "middleware" => "authenticate",
-    "prefix" => "code",
-    "controller" => CodesubmissionController::class
-], function () {
-    Route::get('/', [CodesubmissionController::class, 'readAllCodes']);    
-    Route::get('/{id}',  'readCode');
-    // Route::post('/', 'createUser');
-    // Route::delete('/{id}',  'deleteUser');
-    // Route::put('/{id}',  'updateUser');
-    // Route::get('/menus/{id}', 'restaurantMenus');
+Route::prefix('code')->group(function () {
+    Route::post("/createCode", [\App\Http\Controllers\CodesubmissionController::class, "createCode"]);
+    Route::get("/{id}", [App\Http\Controllers\CodesubmissionController::class, "readCode"]);
+    Route::get("/", [App\Http\Controllers\CodesubmissionController::class, "readAllCodes"]);
+    // Route::delete("/{id}", [App\Http\Controllers\CodesubmissionController::class, "deleteCode"]);
+    
 });
-
 
 
 

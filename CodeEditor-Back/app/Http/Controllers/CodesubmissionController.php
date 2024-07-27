@@ -19,4 +19,48 @@ class CodesubmissionController extends Controller
         ],200);
     }
 
+    public function createCode(Request $request)
+    {
+        // Validate the incoming request
+        $validated_data = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'code' => 'required|string|max:255',
+            
+        ]);
+    
+        $code = Codesubmission::create($validated_data);
+    
+        // Return the created user
+        return response()->json([
+           $code 
+        ], 201);
+    }
+
+    public function deleteCode($id){
+        $code=Codesubmission::find($id);
+        $code->delete();
+        return response()->json([
+            "message" => "code  deleted successfully"
+        ],204);
+
+    }
+
+    public function updateCode(Request $request ,$id){
+        $code=Codesubmission::find($id);
+
+        if($code){
+            $validated_data=$request->validate([
+                "user_id"=>"required|exists:users,id",
+                 "code"=>"required|string|max:255",
+                 
+            ]);
+        }
+        $code->update($validated_data);
+        return response()->json([
+            "message"=>"Code updated successfully"
+        ],204);
+
+    }
+
+        
 }
