@@ -13,7 +13,7 @@ class CodesubmissionSeeder extends Seeder
      */
     public function run(): void
     {
-        Codesubmission::factory(50)->create();
+        Codesubmission::factory(5)->create();
         
     }
 }
