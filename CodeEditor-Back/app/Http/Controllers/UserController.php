@@ -19,22 +19,7 @@ class UserController extends Controller
         ],200);
     }
 
-    // public function createUser(Request $request){
-        
-    //     $validated_data = $request->validate([
-    //         "id" => "required|exists:user,id|numeric",
-    //         "name" => "required|string|max:255",
-    //         "email" => "required|string|email|max:255|unique:user,email",
-    //         "password" => "required|string|min:6|confirmed"
 
-
-    //     ]);
-        
-    //     $user =User::create($validated_data);
-    //     return response()->json([
-    //         "user" => $user
-    //     ], 201);
-    // }
     public function createUser(Request $request)
 {
     // Validate the incoming request

@@ -8,6 +8,7 @@ use App\Models\Chat;
 class Message extends Model
 {
     use HasFactory;
+    protected $fillable = ['chat_id', 'sender_id', 'message'];
 
     public function chat()
     {
