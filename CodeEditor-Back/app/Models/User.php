@@ -21,6 +21,7 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'role'
     ];
+    public $timestamps = true; // Ensure this is set
 
     /**
      * The attributes that should be hidden for serialization.

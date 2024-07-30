@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -81,7 +82,7 @@ class UserController extends Controller
         ], 404);
     }
 
-    public function bulkImport(Request $request)
+   public function bulkImport(Request $request)
     {
         $users = $request->all();
         $errors = [];
@@ -98,6 +99,8 @@ class UserController extends Controller
                 $errors[$index] = $validator->errors();
             } else {
                 $user['password'] = Hash::make($user['password']);
+                $user['created_at'] = Carbon::now(); // Set current date and time
+                $user['updated_at'] = Carbon::now(); // Set current date and time
                 $validUsers[] = $user;
             }
         }
