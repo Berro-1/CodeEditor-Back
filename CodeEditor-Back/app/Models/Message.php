@@ -10,8 +10,13 @@ class Message extends Model
     use HasFactory;
     protected $fillable = ['chat_id', 'sender_id', 'message'];
 
+    public function sender()
+    {
+        return $this->belongsTo(User::class, 'sender_id');
+    }
+
     public function chat()
     {
-        $this->belongsTo(Chat::class);
+        return $this->belongsTo(Chat::class);
     }
 }

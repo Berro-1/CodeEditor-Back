@@ -32,9 +32,12 @@ Route::middleware('auth:api')->group(function () {
       
     });
 });
+Route::middleware('auth:api')->group(function () {
+
 Route::prefix('message')->group(function () {
     Route::post("/createMessage/{chat_id}", [\App\Http\Controllers\MessageController::class, "createMessage"]);
-    Route::get("/get/{chat_id}", [App\Http\Controllers\MessageController::class, "get"]);
+    Route::get("/get/{chat_id}", [App\Http\Controllers\MessageController::class, "getMessages"]);
+});
 });
 
 
