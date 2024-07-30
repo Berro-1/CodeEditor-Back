@@ -8,15 +8,24 @@ use Dotenv\Validator;
 
 class ChatController extends Controller
 {
-    public function getAllChats(Request $request, $id)
-    {
-        $chats = Chat::where('user1', $id)
-            ->orWhere('user2', $id)
-            ->get();
+  public function getAllChats(Request $request, $id)
+{
+    $chats = Chat::where('user1', $id)
+        ->orWhere('user2', $id)
+        ->with(['user1Details', 'user2Details', 'messages' => function($query) {
+            $query->latest()->first();
+        }])
+        ->get();
 
-        return response()->json($chats, 200);
-    }
+    $chats = $chats->map(function($chat) {
+        $chat->latestMessage = $chat->messages->first() ? $chat->messages->first()->message : null;
+        $chat->user1Name = $chat->user1Details->name;
+        $chat->user2Name = $chat->user2Details->name;
+        return $chat;
+    });
 
+    return response()->json($chats, 200);
+}
     public function createChat(Request $request)
     {
         $request->validate([
