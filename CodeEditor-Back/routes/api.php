@@ -45,6 +45,8 @@ Route::prefix('user')->group(function () {
     Route::post("/createUser", [\App\Http\Controllers\UserController::class, "createUser"]);
     Route::get("/{id}", [App\Http\Controllers\UserController::class, "readUser"]);
     Route::get("/", [App\Http\Controllers\UserController::class, "readAllUsers"]);
+    Route::post('/bulk-import', [UserController::class, 'bulkImport']);
+
 });
 
 Route::prefix('code')->group(function () {
