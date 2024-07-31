@@ -21,6 +21,7 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'role'
     ];
+    public $timestamps = true; // Ensure this is set
 
     /**
      * The attributes that should be hidden for serialization.
@@ -60,9 +61,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-    public function code_submission()
+    public function codes()
     {
-        $this->hasMany(Codesubmission::class);
+        return $this->hasMany(Codesubmission::class);
     }
     public function chat()
     {

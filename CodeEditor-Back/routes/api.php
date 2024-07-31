@@ -45,9 +45,12 @@ Route::prefix('user')->group(function () {
     Route::post("/createUser", [\App\Http\Controllers\UserController::class, "createUser"]);
     Route::get("/{id}", [App\Http\Controllers\UserController::class, "readUser"]);
     Route::get("/", [App\Http\Controllers\UserController::class, "readAllUsers"]);
+    Route::post('/bulk-import', [UserController::class, 'bulkImport']);
+    
 });
 
 Route::prefix('code')->group(function () {
+    Route::middleware('auth:api')->get('/userCodes', [CodesubmissionController::class, 'getUserCodes']);
     Route::post("/createCode", [\App\Http\Controllers\CodesubmissionController::class, "createCode"]);
     Route::get("/{id}", [App\Http\Controllers\CodesubmissionController::class, "readCode"]);
     Route::get("/", [App\Http\Controllers\CodesubmissionController::class, "readAllCodes"]);
@@ -70,4 +73,4 @@ Route::post("getSuggestions", [\App\Http\Controllers\CopilotController::class, "
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
-// });
+// });+
