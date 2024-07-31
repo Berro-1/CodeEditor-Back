@@ -56,6 +56,14 @@ Route::prefix('code')->group(function () {
 });
 
 
+Route::post("getSuggestions", [\App\Http\Controllers\CopilotController::class, "getSuggestions"]);
+    
+
+
+
+
+
+
 
 
 
