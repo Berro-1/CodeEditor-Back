@@ -54,7 +54,7 @@ Route::prefix('code')->group(function () {
     Route::post("/createCode", [\App\Http\Controllers\CodesubmissionController::class, "createCode"]);
     Route::get("/{id}", [App\Http\Controllers\CodesubmissionController::class, "readCode"]);
     Route::get("/", [App\Http\Controllers\CodesubmissionController::class, "readAllCodes"]);
-    // Route::delete("/{id}", [App\Http\Controllers\CodesubmissionController::class, "deleteCode"]);
+    Route::delete("/{id}", [App\Http\Controllers\CodesubmissionController::class, "deleteCode"]);
 
 });
 
