@@ -21,7 +21,7 @@ class CopilotController extends Controller
                 'messages' => [
                     [
                         'role' => 'user',
-                        'content' => "You are copilot. make completion and correction for the code, Point out the errors if present. For this $language code:\n\n$code there is no need to tell me if the code has no errors",
+                        'content' => "Provide the complete code for the following task and only the code i dont want any word form you moreover when i ask for a function specifically give me the function i want no html or css just assume i have those:\n\n$code only using the selected language $language \n\ndont give me anything not related to my language ",
                     ],
                 ],
                 'max_tokens' => 150,
