@@ -61,9 +61,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-    public function code_submission()
+    public function codes()
     {
-        $this->hasMany(Codesubmission::class);
+        return $this->hasMany(Codesubmission::class);
     }
     public function chat()
     {

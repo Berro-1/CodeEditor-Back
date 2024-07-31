@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Codesubmission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CodesubmissionController extends Controller
 {
@@ -18,7 +19,20 @@ class CodesubmissionController extends Controller
            $code
         ],200);
     }
+    public function getUserCodes(Request $request)
+    {
+        $user = $request->user();
 
+        // Debugging: Log the authenticated user
+        Log::info('Authenticated user:', ['user' => $user]);
+
+        $codes = Codesubmission::where('user_id', $user->id)->get();
+
+        // Debugging: Log the codes retrieved for the user
+        Log::info('Codes for user:', ['codes' => $codes]);
+
+        return response()->json($codes, 200);
+    }
     public function createCode(Request $request)
     {
         // Validate the incoming request

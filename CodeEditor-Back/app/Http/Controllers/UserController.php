@@ -99,8 +99,8 @@ class UserController extends Controller
                 $errors[$index] = $validator->errors();
             } else {
                 $user['password'] = Hash::make($user['password']);
-                $user['created_at'] = Carbon::now(); // Set current date and time
-                $user['updated_at'] = Carbon::now(); // Set current date and time
+                $user['created_at'] = Carbon::now();
+                $user['updated_at'] = Carbon::now();
                 $validUsers[] = $user;
             }
         }
