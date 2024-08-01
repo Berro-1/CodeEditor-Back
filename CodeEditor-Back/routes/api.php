@@ -25,20 +25,18 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
 });
 
-Route::middleware('auth:api')->group(function () {
-    Route::prefix('chat')->group(function () {
-        Route::post("/createChat", [ChatController::class, "createChat"]);
-        Route::get("/user/{id}", [ChatController::class, "getAllChats"]);
-      
-    });
-});
+
+        Route::post("chat/createChat", [ChatController::class, "createChat"]);
+        
+
+Route::get("chat/user/{id}", [ChatController::class, "getAllChats"]);
 Route::middleware('auth:api')->group(function () {
 
 Route::prefix('message')->group(function () {
-    Route::post("/createMessage/{chat_id}", [\App\Http\Controllers\MessageController::class, "createMessage"]);
-    Route::get("/get/{chat_id}", [App\Http\Controllers\MessageController::class, "getMessages"]);
 });
 });
+Route::post("message/createMessage/{chat_id}", [\App\Http\Controllers\MessageController::class, "createMessage"]);
+Route::get("message/get/{chat_id}", [App\Http\Controllers\MessageController::class, "getMessages"]);
 
 
 Route::prefix('user')->group(function () {
